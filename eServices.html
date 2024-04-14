@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="ESVAHOME.css">
+        
+        <ul>
+            <li><a href="ESVAHOME.html">Home</a></li>
+            <li><a href="eServices.html">eServices</a></li>
+            <li><a href="eRebates.html">eRebates</a></li>
+            <li><a href="eBenefit.html"> eBenefit </a></li>
+            <li><a href="eCharger.html"> eCharger </a></li>
+           
+          </ul>
+        <title>Eservices</title>
+    <style>
+      header {
+    background-color: #0074D9;
+    color: #FFF;
+    text-align: center;
+    padding: 1rem;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+button {
+    background-color: #0074D9;
+    color: #FFF;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+        
+    </style>
+    
+            
+    </head>
+    
+    <body>
+        <div class="container" style="color: white;">
+            <h1>Welcome to eServicer!</h1>
+            <p style="font-size:medium"> The eServicer module allows you to schedule services at one of our partnered service centers</p>
+            <p>Choose an option:</p>
+            <button onclick="scheduleService()">Schedule a Service</button>
+            <button onclick="viewServiceHistory()">View Service History</button>
+            <div id="serviceHistory"></div>
+        </div>
+    <div style="color: white;">   
+    <h2> Here are our partnered Service Centers:</h2>
+    <h3> Inchcape Barbados</h3>
+    <p style="font-size: medium;">Address: Warrens, St.Micheal Barbados</p>
+    <p style="font-size: medium;"> Telephone number: 417-7777 </p>
+    <a href="https://www.inchcapebarbados.com/"> Link to Inchcape Barbados' Website</a>
+    <h3> Automotive Art</h3>
+    <p style="font-size:medium;"> Address</p>
+    <li> Welches St. Thomas </li>
+    <br>
+    <li>  Six Roads St Philip </li>
+    <br>
+    <li>Wildey Industrial Park St.Michael</li>
+    <br>
+    <p style="font-size: medium;"> Telephone number: 426-1800 </p>
+    </div>
+
+<script>
+    
+    const authorizedServiceCenters = [
+    { name: "Inchcape Barbados", location: "Warrens" },
+    { name: "Automotive Art", location: "Wildey" }
+];
+
+const serviceHistory = [];
+
+function scheduleService() {
+    // Check if service history exists in local storage
+    const serviceHistoryString = localStorage.getItem("serviceHistory");
+    let serviceHistory = serviceHistoryString ? JSON.parse(serviceHistoryString) : [];
+
+    // If service history exists, show a message and exit the function
+    if (serviceHistory.length > 0) {
+        alert("You have already scheduled a service. Thank you!");
+        return;
+    }
+
+    const serviceDate = prompt("Enter service date (YYYY-MM-DD):");
+    const serviceType = prompt("Enter service type (e.g., brakes change, tire change, battery replacement, car wash):");
+
+    // Validate the serviceDate format (YYYY-MM-DD)
+    if (!isValidDate(serviceDate)) {
+        alert("Invalid date format. Please enter a valid date in the format YYYY-MM-DD.");
+        return; // Exit the function
+    }
+
+    // Convert the serviceDate string to a Date object
+    const enteredDate = new Date(serviceDate);
+
+    // Check if the entered date is before today
+    const currentDate = new Date();
+    if (enteredDate < currentDate) {
+        alert("Service date must be on or after today.");
+        return; // Exit the function
+    }
+
+    let centerChoice;
+    do {
+        console.log("Authorized Service Centers:");
+        for (let i = 0; i < authorizedServiceCenters.length; i++) {
+            console.log(`${i + 1}. ${authorizedServiceCenters[i].name} (${authorizedServiceCenters[i].location})`);
+        }
+        centerChoice = parseInt(prompt("Choose a service center Inchcape Barbados (1), Automotive Art (2)"));
+    } while (![1, 2].includes(centerChoice));
+
+    const selectedCenter = authorizedServiceCenters[centerChoice - 1].name;
+
+    serviceHistory.push({ date: serviceDate, type: serviceType, center: selectedCenter });
+
+    // Save updated service history to local storage
+    localStorage.setItem("serviceHistory", JSON.stringify(serviceHistory));
+
+    alert(`Service scheduled on ${serviceDate} at ${selectedCenter} for ${serviceType}.`);
+}
+
+// Function to check if a string is a valid date in the format YYYY-MM-DD
+function isValidDate(dateString) {
+    const dateFormat = /^\d{4}-\d{2}-\d{2}$/;
+    return dateFormat.test(dateString);
+}
+
+// Example usage:
+scheduleService();
+            function viewServiceHistory() {
+                const historyDiv = document.getElementById("serviceHistory");
+                historyDiv.innerHTML = "<h2>Service History:</h2>";
+                for (const service of serviceHistory) {
+                    const serviceDiv = document.createElement("div");
+                    serviceDiv.classList.add("service-center");
+                    serviceDiv.textContent = `Date: ${service.date}, Type: ${service.type}, Center: ${service.center}`;
+                    historyDiv.appendChild(serviceDiv);
+                }
+            }
+        </script>
+    </body>
+    </body>
+        
+        

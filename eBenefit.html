@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="ESVAHOME.css">
+        <ul>
+            <li><a href="ESVAHOME.html">Home</a></li>
+            <li><a href="eServices.html">eServices</a></li>
+            <li><a href="eRebates.html">eRebates</a></li>
+            <li><a href="eBenefit.html"> eBenefit </a></li>
+            <li><a href="eCharger.html">eCharger </a></li>
+        
+           
+          </ul>
+        <title>Sneakers</title>
+    <style>
+        table, th, td, tr {
+  border: 3px solid black;
+  border-style: solid;
+  border-collapse: collapse;
+  margin:75px;
+  overflow: hidden;
+}
+button {
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: white;
+
+}
+
+       
+    </style>
+
+    </style>
+
+   <div class="container" style="color: white;">
+    <h1>eBenefits Module</h1>
+    <p> The eBenefits Module displays the number of CO2 emissions you have saved from driving your vehicle</p>
+    <form id="benefitsForm">
+        <label for="mileage">Total Mileage Driven (in kilometers):</label>
+        <input type="number" id="mileage" required oninput="calculateCO2()">
+        <br>
+        <label for="co2Result">CO2 Emissions Saved:</label>
+        <input type="text" id="co2Result" readonly>
+        <br>
+        <button onclick="getDirections()">Get Charging Locations</button>
+    </form>
+</div>
+
+<script>
+    const co2SavedPerMile = 147 / 1.60934; // Convert g/km to g/mile (2011 Suzuki Swift Sport)
+
+    function calculateCO2() {
+        const mileage = parseFloat(document.getElementById("mileage").value);
+        const totalCo2Saved = isNaN(mileage) ? 0 : mileage * co2SavedPerMile;
+
+        document.getElementById("co2Result").value = totalCo2Saved.toFixed(2) + " g";
+    }
+
+    function getDirections() {
+        location.href = "https://www.electromaps.com/en/charging-stations/barbados";
+    }
+</script>
+</body>
+</html>

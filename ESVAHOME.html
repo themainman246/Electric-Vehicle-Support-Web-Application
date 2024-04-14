@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Electric vehicle support Application</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="ESVAHOME.css">
+       <script src="greet.js"></script>
+        <ul>
+            <li><a href="ESVAHOME.html">Home</a></li>
+            <li><a href="eServices.html">eServices</a></li>
+            <li><a href="eRebates.html">eRebates</a></li>
+            <li><a href="eBenefit.html"> eBenefit </a></li>
+            <li><a href="eCharger.html"> eCharger </a></li>
+           
+          </ul>
+    </head>
+  
+
+    <body>
+      <div id="bottom" style="color: white;">
+        <h1 style="text-align: center;"><b>Electric Vehicle Support Application </b><br> </h1>
+        <hr style="margin:auto;width:40%">
+        <p style="text-align: center;color:black;"> The Future is Electric </p>
+      </div>
+      
+        <form id="userForm" style="color: white;align-items: center;" >
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter your username" required>
+            <br>
+            <label for="modelCar">Model Car:</label>
+            <input type="text" id="modelCar" placeholder="Enter your model car" required>
+            <br>
+            <button type="button" onclick="displayWelcomeMessage()">Submit</button>
+        </form>
+        <div id="welcomeMessage"></div>
+    
+        <script>
+            function displayWelcomeMessage() {
+                const username = document.getElementById("username").value;
+                const modelCar = document.getElementById("modelCar").value;
+                const welcomeMessage = `Welcome, ${username}! We're glad you have decided to join us. You can now use any of the 4 modules avaliable`;
+                alert(welcomeMessage);
+            }
+        </script>
+    </body>
+        
+        

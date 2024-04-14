@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+         <meta charset="utf-8">
+        <title> eCharger </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="ESVAHOME.css">
+        <script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
+
+        <ul>
+            <li><a href="ESVAHOME.html">Home</a></li>
+            <li><a href="eServices.html">eServices</a></li>
+            <li><a href="eRebates.html">eRebates</a></li>
+            <li><a href="eBenefit.html"> eBenefit </a></li>
+            <li><a href="eCharger.html">eCharger </a></li>
+           
+          </ul>
+          <style>
+            
+            .echarger {
+            font-size: medium;
+            color: white;
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+        <!--<div id="bottom">
+            <h1 style="text-align: center;"><b>Electric Vehicle Support Application </b><br> </h1>
+            <hr style="margin:auto;width:40%">
+            <h2 style="text-align: center;color:black;"> eCharger  </h2>
+          </div>
+        -->
+        <div class="echarger">
+            <h2>eCharger Module</h2>
+            <p>The eCharger module provides real-time information about your electric vehicle's charge level.</p>
+            <p>Current charge level: <span id="chargeLevel">Loading...</span></p>
+            <p id="warning"></p>
+            <button onclick="getDirections()"> Get Locations</button>
+            <br>
+            <a href="https://www.tesla.com/ownersmanual/model3/en_us/GUID-BEE08D47-0CE0-4BDD-83F2-9854FB3D578F.html"> How to top up Charge </a>
+        </div>
+    
+<script>
+          function getRandomNumber() {
+ 
+  return Math.floor(Math.random() * 100) + 1;
+}
+
+// Set currentCharge to the result of getRandomNumber()
+const currentCharge = getRandomNumber();
+
+// Check charge level and display warning if needed
+function checkChargeLevel() {
+  const warningThreshold = 20; // Set your desired threshold
+  const chargeLevelElement = document.getElementById('chargeLevel');
+  const warningElement = document.getElementById('warning');
+
+  chargeLevelElement.textContent = `${currentCharge}%`;
+
+  if (currentCharge <  warningThreshold) {
+    alert('Low Charge Level! Please recharge soon.');
+    warningElement.textContent = 'Warning: Low charge level! Please recharge soon.';
+  }
+   else {
+    warningElement.textContent = '';
+  }
+}
+
+// Simulated function to get directions (replace with actual logic)
+function getDirections() {
+  location.href = 'https://www.electromaps.com/en/charging-stations/barbados';
+}
+
+// Initial check
+checkChargeLevel();
+</script>
+
+
+
+          
+    </body>
+    
+        
+</html>
